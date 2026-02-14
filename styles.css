@@ -317,13 +317,14 @@ h1 {
 
 .bouquet-cards {
   position: relative;
-  width: min(640px, 96vw);
-  --card-w: clamp(72px, 14vw, 96px);
+  width: min(560px, 92vw);
+  --card-w: clamp(70px, 13vw, 92px);
   --card-h: calc(var(--card-w) * 1.4);
-  --stem-h: clamp(46px, 10vw, 80px);
+  --stem-h: clamp(40px, 9vw, 72px);
   height: calc(var(--card-h) + var(--stem-h) + 44px);
   margin: 0 auto 24px;
   display: block;
+  transform: translateX(-40px);
 }
 
 .mini-card {
@@ -404,45 +405,53 @@ h1 {
 }
 
 .mini-card:nth-child(1) {
-  --offset: clamp(-240px, -28vw, -160px);
-  --lift: 20px;
-  --tilt: -28deg;
+  --offset: clamp(-200px, -24vw, -130px);
+  --lift: 14px;
+  --tilt: -24deg;
 }
 
 .mini-card:nth-child(2) {
-  --offset: clamp(-170px, -20vw, -115px);
-  --lift: 6px;
-  --tilt: -18deg;
+  --offset: clamp(-140px, -17vw, -95px);
+  --lift: 4px;
+  --tilt: -16deg;
 }
 
 .mini-card:nth-child(3) {
-  --offset: clamp(-90px, -11vw, -60px);
-  --lift: -10px;
+  --offset: clamp(-70px, -10vw, -48px);
+  --lift: -8px;
   --tilt: -8deg;
 }
 
 .mini-card:nth-child(4) {
   --offset: 0px;
-  --lift: -16px;
+  --lift: -14px;
   --tilt: 0deg;
 }
 
 .mini-card:nth-child(5) {
-  --offset: clamp(90px, 11vw, 60px);
-  --lift: -10px;
+  --offset: clamp(70px, 10vw, 48px);
+  --lift: -8px;
   --tilt: 8deg;
 }
 
 .mini-card:nth-child(6) {
-  --offset: clamp(170px, 20vw, 115px);
-  --lift: 6px;
-  --tilt: 18deg;
+  --offset: clamp(140px, 17vw, 95px);
+  --lift: 4px;
+  --tilt: 16deg;
 }
 
 .mini-card:nth-child(7) {
-  --offset: clamp(240px, 28vw, 160px);
-  --lift: 20px;
-  --tilt: 28deg;
+  --offset: clamp(200px, 24vw, 130px);
+  --lift: 14px;
+  --tilt: 24deg;
+}
+
+.tap-hint {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #b05873;
+  margin: -10px 0 18px;
+  font-family: "Segoe Script", "Brush Script MT", cursive;
 }
 
 @media (max-width: 520px) {

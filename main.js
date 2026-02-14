@@ -2,7 +2,7 @@ const heartsContainer = document.getElementById("floating-hearts");
 const petalsContainer = document.getElementById("falling-petals");
 const revealButton = document.querySelector("[data-reveal-btn]");
 const revealMessage = document.querySelector("[data-reveal-message]");
-const flipCard = document.querySelector("[data-flip-card]");
+const flipCards = document.querySelectorAll("[data-flip-card]");
 const scrollButton = document.querySelector("[data-scroll-target]");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -55,9 +55,11 @@ if (revealButton && revealMessage) {
   });
 }
 
-if (flipCard) {
-  flipCard.addEventListener("click", () => {
-    flipCard.classList.toggle("is-flipped");
+if (flipCards.length) {
+  flipCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      card.classList.toggle("is-flipped");
+    });
   });
 }
 

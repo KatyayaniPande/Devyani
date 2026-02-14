@@ -315,305 +315,140 @@ h1 {
   margin-bottom: 24px;
 }
 
-.bouquet-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-  gap: 14px;
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.bouquet-grid--dense {
-  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
-  gap: 10px;
-  font-size: clamp(1.4rem, 4vw, 2.2rem);
-  margin-bottom: 12px;
-}
-
-.bouquet-wall {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(54px, 1fr));
-  gap: 12px;
-  font-size: clamp(1.6rem, 5vw, 2.4rem);
-  text-align: center;
-}
-
-.bouquet-illustration {
+.bouquet-cards {
   position: relative;
-  width: min(380px, 82vw);
-  height: 340px;
+  width: min(640px, 96vw);
+  --card-w: clamp(72px, 14vw, 96px);
+  --card-h: calc(var(--card-w) * 1.4);
+  --stem-h: clamp(46px, 10vw, 80px);
+  height: calc(var(--card-h) + var(--stem-h) + 44px);
   margin: 0 auto 24px;
+  display: block;
 }
 
-.bouquet-wrap {
+.mini-card {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  perspective: 1000px;
+  cursor: pointer;
   position: absolute;
-  bottom: 0;
   left: 50%;
-  width: 230px;
-  height: 150px;
-  background: linear-gradient(160deg, #f7c3d3, #f2a4bc);
-  transform: translateX(-50%);
-  border-radius: 0 0 80px 80px;
-  clip-path: polygon(50% 0%, 100% 26%, 84% 100%, 16% 100%, 0% 26%);
-  box-shadow: 0 18px 30px rgba(140, 54, 82, 0.25);
+  top: 52%;
+  --offset: 0px;
+  --lift: 0px;
+  --tilt: 0deg;
+  transform: translate(-50%, -50%) translate(var(--offset), var(--lift)) rotate(var(--tilt));
 }
 
-.bouquet-stems span {
+.mini-card::after {
+  content: "";
   position: absolute;
-  bottom: 90px;
+  left: 50%;
+  bottom: calc(0px - var(--stem-h));
   width: 6px;
-  height: 150px;
+  height: var(--stem-h);
+  transform: translateX(-50%);
   background: linear-gradient(180deg, #86ad75, #4f6e41);
   border-radius: 6px;
-}
-
-.bouquet-leaves span {
-  position: absolute;
-  width: 42px;
-  height: 22px;
-  background: linear-gradient(140deg, #b7d7a6, #5f8b5c);
-  border-radius: 100% 0 100% 0;
-  opacity: 0.9;
-  filter: drop-shadow(0 6px 12px rgba(90, 110, 70, 0.25));
-}
-
-.bouquet-leaves span:nth-child(1) {
-  left: 86px;
-  top: 142px;
-  transform: rotate(-18deg);
-}
-
-.bouquet-leaves span:nth-child(2) {
-  left: 130px;
-  top: 118px;
-  transform: rotate(12deg);
-}
-
-.bouquet-leaves span:nth-child(3) {
-  left: 188px;
-  top: 120px;
-  transform: rotate(-8deg);
-}
-
-.bouquet-leaves span:nth-child(4) {
-  left: 222px;
-  top: 150px;
-  transform: rotate(18deg);
-}
-
-.bouquet-leaves span:nth-child(5) {
-  left: 62px;
-  top: 172px;
-  transform: rotate(-26deg);
-}
-
-.bouquet-leaves span:nth-child(6) {
-  left: 248px;
-  top: 176px;
-  transform: rotate(22deg);
-}
-
-.bouquet-stems span:nth-child(1) {
-  left: 120px;
-  transform: rotate(-8deg);
-}
-
-.bouquet-stems span:nth-child(2) {
-  left: 140px;
-  transform: rotate(4deg);
-}
-
-.bouquet-stems span:nth-child(3) {
-  left: 160px;
-  transform: rotate(12deg);
-}
-
-.bouquet-stems span:nth-child(4) {
-  left: 100px;
-  transform: rotate(-14deg);
-}
-
-.bouquet-stems span:nth-child(5) {
-  left: 180px;
-  transform: rotate(18deg);
-}
-
-.bouquet-stems span:nth-child(6) {
-  left: 80px;
-  transform: rotate(-20deg);
-}
-
-.bouquet-stems span:nth-child(7) {
-  left: 200px;
-  transform: rotate(22deg);
-}
-
-.bouquet-blooms {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 320px;
-  height: 210px;
-  transform: translateX(-50%);
-}
-
-.bouquet-blooms .bloom {
-  position: absolute;
-  border-radius: 50%;
-  box-shadow: 0 12px 20px rgba(140, 54, 82, 0.2);
-  background: radial-gradient(circle at 35% 35%, #ffffff 0 8%, rgba(255, 255, 255, 0.2) 20%, transparent 45%);
-}
-
-.bouquet-blooms .bloom::before,
-.bouquet-blooms .bloom::after {
-  content: "";
-  position: absolute;
-  inset: 8%;
-  border-radius: 50%;
   opacity: 0.9;
 }
 
-.bouquet-blooms .bloom::before {
-  transform: rotate(30deg);
-  box-shadow: -35% -10% 0 0 rgba(255, 255, 255, 0.22),
-    35% -8% 0 0 rgba(255, 255, 255, 0.22),
-    0 34% 0 0 rgba(255, 255, 255, 0.18);
+.mini-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease;
 }
 
-.bouquet-blooms .bloom::after {
-  transform: rotate(-20deg);
-  box-shadow: -28% 18% 0 0 rgba(255, 255, 255, 0.18),
-    28% 18% 0 0 rgba(255, 255, 255, 0.16);
+.mini-card.is-flipped .mini-card-inner {
+  transform: rotateY(180deg);
 }
 
-.bloom-rose {
-  background: radial-gradient(circle at 30% 30%, #ffe6ef, #e67b9c 58%, #b84a6e 100%);
-}
-
-.bloom-peony {
-  background: radial-gradient(circle at 28% 28%, #fff4f8, #f4a9c2 55%, #d26a8c 100%);
-}
-
-.bloom-tulip {
-  background: radial-gradient(circle at 30% 30%, #ffe9f3, #f4b1c9 60%, #cf6a8a 100%);
-}
-
-.bouquet-blooms span:nth-child(1) {
-  width: 78px;
-  height: 78px;
-  left: 24px;
-  top: 32px;
-}
-
-.bouquet-blooms span:nth-child(2) {
-  width: 84px;
-  height: 84px;
-  left: 110px;
-  top: 12px;
-}
-
-.bouquet-blooms span:nth-child(3) {
-  width: 70px;
-  height: 70px;
-  left: 206px;
-  top: 36px;
-}
-
-.bouquet-blooms span:nth-child(4) {
-  width: 70px;
-  height: 70px;
-  left: 68px;
-  top: 86px;
-}
-
-.bouquet-blooms span:nth-child(5) {
-  width: 64px;
-  height: 64px;
-  left: 150px;
-  top: 82px;
-}
-
-.bouquet-blooms span:nth-child(6) {
-  width: 58px;
-  height: 58px;
-  left: 228px;
-  top: 96px;
-}
-
-.bouquet-blooms span:nth-child(7) {
-  width: 54px;
-  height: 54px;
-  left: 6px;
-  top: 96px;
-}
-
-.bouquet-blooms span:nth-child(8) {
-  width: 60px;
-  height: 60px;
-  left: 252px;
-  top: 18px;
-}
-
-.bouquet-blooms span:nth-child(9) {
-  width: 66px;
-  height: 66px;
-  left: 178px;
-  top: 52px;
-}
-
-.bouquet-blooms span:nth-child(10) {
-  width: 58px;
-  height: 58px;
-  left: 104px;
-  top: 52px;
-}
-
-.bouquet-blooms span:nth-child(11) {
-  width: 52px;
-  height: 52px;
-  left: 34px;
-  top: 116px;
-}
-
-.bouquet-blooms span:nth-child(12) {
-  width: 56px;
-  height: 56px;
-  left: 216px;
-  top: 120px;
-}
-
-.bouquet-ribbon {
+.mini-card-front,
+.mini-card-back {
   position: absolute;
-  bottom: 78px;
-  left: 50%;
-  width: 120px;
-  height: 56px;
-  background: linear-gradient(140deg, #f4b3c7, #e084a3);
-  border-radius: 80px;
-  transform: translateX(-50%);
-  box-shadow: 0 10px 20px rgba(140, 54, 82, 0.25);
+  inset: 0;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 14px;
+  box-shadow: 0 12px 24px rgba(134, 52, 75, 0.22);
 }
 
-.bouquet-ribbon::before,
-.bouquet-ribbon::after {
-  content: "";
-  position: absolute;
-  bottom: -16px;
-  width: 46px;
-  height: 40px;
-  background: linear-gradient(140deg, #f2a7be, #d96f8d);
-  border-radius: 0 0 24px 24px;
+.mini-card-front {
+  background: linear-gradient(140deg, #ffe9f2, #f6bfd3);
+  color: #8a2b3f;
+  font-size: 0.95rem;
+  gap: 6px;
 }
 
-.bouquet-ribbon::before {
-  left: 6px;
-  transform: rotate(-8deg);
+.mini-card-front span {
+  font-size: 1.4rem;
 }
 
-.bouquet-ribbon::after {
-  right: 6px;
-  transform: rotate(8deg);
+.mini-card-front .mini-letter {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.mini-card-back {
+  background: linear-gradient(140deg, #f9c9d9, #fef1f6);
+  color: #7c2a40;
+  transform: rotateY(180deg);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.mini-card:nth-child(1) {
+  --offset: clamp(-240px, -28vw, -160px);
+  --lift: 20px;
+  --tilt: -28deg;
+}
+
+.mini-card:nth-child(2) {
+  --offset: clamp(-170px, -20vw, -115px);
+  --lift: 6px;
+  --tilt: -18deg;
+}
+
+.mini-card:nth-child(3) {
+  --offset: clamp(-90px, -11vw, -60px);
+  --lift: -10px;
+  --tilt: -8deg;
+}
+
+.mini-card:nth-child(4) {
+  --offset: 0px;
+  --lift: -16px;
+  --tilt: 0deg;
+}
+
+.mini-card:nth-child(5) {
+  --offset: clamp(90px, 11vw, 60px);
+  --lift: -10px;
+  --tilt: 8deg;
+}
+
+.mini-card:nth-child(6) {
+  --offset: clamp(170px, 20vw, 115px);
+  --lift: 6px;
+  --tilt: 18deg;
+}
+
+.mini-card:nth-child(7) {
+  --offset: clamp(240px, 28vw, 160px);
+  --lift: 20px;
+  --tilt: 28deg;
+}
+
+@media (max-width: 520px) {
+  .mini-card {
+    top: 50%;
+  }
 }
 
 .soft-text {
